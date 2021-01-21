@@ -89,7 +89,7 @@ WantedBy=diaspora.target
 18. If everything went well, you should get:
 ```bash
 diaspora@computer:/etc/systemd/system$ sudo systemctl status d-web
-● d-web.service - diaspora* social network (unicorn)
+🟢 d-web.service - diaspora* social network (unicorn)
    Loaded: loaded (/etc/systemd/system/d-web.service; enabled; vendor preset: enabled)
    Active: active (running) since Thu 2021-01-21 11:22:17 CST; 10s ago
  Main PID: 23443 (ruby)
@@ -111,7 +111,7 @@ Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.666855 #23808]  IN
 Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.670572 #23810]  INFO -- : worker=2 ready
 
 diaspora@computer:/etc/systemd/system$ sudo systemctl status d-side
-● d-side.service - diaspora* social network (sidekiq)
+🟢 d-side.service - diaspora* social network (sidekiq)
    Loaded: loaded (/etc/systemd/system/d-side.service; enabled; vendor preset: enabled)
    Active: active (running) since Thu 2021-01-21 11:22:17 CST; 32s ago
  Main PID: 23444 (ruby)
