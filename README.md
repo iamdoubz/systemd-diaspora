@@ -15,7 +15,7 @@
     - `rvm current`
     - `/bin/bash -lc "rvm current"`
 3. The output of both of these needs to match _exactly_ for the service and target files to work properly!
-```
+```bash
 diaspora@computer:~/diaspora$ rvm current
 ruby-2.6.5@diaspora
 diaspora@computer:~/diaspora$ /bin/bash -lc "rvm current"
@@ -29,7 +29,7 @@ ruby-2.6.5@diaspora
 6. Change directory into where we will be storing the services `cd /etc/systemd/system/`
 7. Create a target file that will call the diaspora unicorn and sidekiq service files `sudo nano diaspora.target`
 8. Contents:
-```
+```ini
 [Unit]
 Description=diaspora* social network
 ## Postgres section
@@ -45,7 +45,7 @@ WantedBy=multi-user.target
 9. **NOTE:** If you use postgresql, make sure to comment out the MySQL section, and uncomment the Postgres section.
 10. Create the diaspora web unicorn service file `sudo nano d-web.service`
 11. Contents:
-```
+```ini
 [Unit]
 Description=diaspora* social network (unicorn)
 PartOf=diaspora.target
@@ -65,7 +65,7 @@ WantedBy=diaspora.target
 ```
 12. Create the diaspora sidekiq service file `sudo nano d-side.service`
 13. Contents:
-```
+```ini
 [Unit]
 Description=diaspora* social network (sidekiq)
 PartOf=diaspora.target
@@ -87,7 +87,7 @@ WantedBy=diaspora.target
 16. Cross your fingers and start the diaspora services `sudo systemctl start diaspora.target`
 17. CHECK TO MAKE SURE EVERYTHING IS WORKING `sudo systemctl status d-web` and `sudo systemctl status d-side`
 18. If everything went well, you should get:
-```
+```bash
 diaspora@computer:/etc/systemd/system$ sudo systemctl status d-web
 ● d-web.service - diaspora* social network (unicorn)
    Loaded: loaded (/etc/systemd/system/d-web.service; enabled; vendor preset: enabled)
