@@ -83,7 +83,7 @@ Restart=always
 WantedBy=diaspora.target
 ```
 14. Reload systemd daemon `sudo systemctl daemon-reload`
-15. Enable the newly created files `sudo systemctl diaspora.target d-web.service d-side.service`
+15. Enable the newly created files `sudo systemctl enable diaspora.target d-web.service d-side.service`
 16. Cross your fingers and start the diaspora services `sudo systemctl start diaspora.target`
 17. CHECK TO MAKE SURE EVERYTHING IS WORKING `sudo systemctl status d-web` and `sudo systemctl status d-side`
 18. If everything went well, you should get:
