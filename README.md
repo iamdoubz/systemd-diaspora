@@ -1,6 +1,6 @@
 # systemd-diaspora
 
-### Updated for 2021 for diaspora version 0.7.14.0
+### Updated for 2021 for diaspora version 0.7.15.0
 
 ## Assumptions
 
