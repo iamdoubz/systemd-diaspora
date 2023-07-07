@@ -2,6 +2,8 @@
 
 ### Updated for 2021 for diaspora version 0.7.15.0
 
+### Updated for 2023 for diaspora version 0.7.18.1
+
 ## Assumptions
 
 - You are using a dedicated user to launch diaspora scripts named "diaspora"
@@ -17,9 +19,9 @@
 3. The output of both of these needs to match _exactly_ for the service and target files to work properly!
 ```bash
 diaspora@computer:~/diaspora$ rvm current
-ruby-2.6.5@diaspora
+ruby-2.7.8@diaspora
 diaspora@computer:~/diaspora$ /bin/bash -lc "rvm current"
-ruby-2.6.5@diaspora
+ruby-2.7.8@diaspora
 ```
 4. Make sure you can manually run the following two commands and diaspora _starts_:
     - `/bin/bash -lc "bin/bundle exec unicorn -c config/unicorn.rb -E production"`
@@ -91,36 +93,35 @@ WantedBy=diaspora.target
 diaspora@computer:/etc/systemd/system$ sudo systemctl status d-web
 🟢 d-web.service - diaspora* social network (unicorn)
    Loaded: loaded (/etc/systemd/system/d-web.service; enabled; vendor preset: enabled)
-   Active: active (running) since Thu 2021-01-21 11:22:17 CST; 10s ago
- Main PID: 23443 (ruby)
-    Tasks: 9 (limit: 4915)
-   CGroup: /system.slice/d-web.service
-           ├─23443 unicorn master -c config/unicorn.rb -E production
-           ├─23806 unicorn worker[0] -c config/unicorn.rb -E production
-           ├─23808 unicorn worker[1] -c config/unicorn.rb -E production
-           └─23810 unicorn worker[2] -c config/unicorn.rb -E production
+     Active: active (running) since Fri 2023-07-07 09:33:59 CDT; 50s ago
+   Main PID: 101479 (ruby)
+      Tasks: 6 (limit: 17935)
+     Memory: 268.6M
+     CGroup: /system.slice/d-web.service
+             ├─101479 unicorn master -c config/unicorn.rb -E production
+             ├─101820 unicorn worker[0] -c config/unicorn.rb -E production
+             └─101822 unicorn worker[1] -c config/unicorn.rb -E production
 
-Jan 21 11:22:17 computer systemd[1]: Started diaspora* social network (unicorn).
-Jan 21 11:22:18 computer bash[23443]: I, [2021-01-21T11:22:18.341946 #23443]  INFO -- : Refreshing Gem list
-Jan 21 11:22:20 computer bash[23443]: Rack::SSL is enabled
-Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.655211 #23443]  INFO -- : unlinking existing socket=/home/diaspora/diaspora/tmp/diaspora.sock
-Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.655347 #23443]  INFO -- : listening on addr=/home/diaspora/diaspora/tmp/diaspora.sock fd=10
-Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.663995 #23806]  INFO -- : worker=0 ready
-Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.665690 #23443]  INFO -- : master process ready
-Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.666855 #23808]  INFO -- : worker=1 ready
-Jan 21 11:22:22 computer bash[23443]: I, [2021-01-21T11:22:22.670572 #23810]  INFO -- : worker=2 ready
+Jul 07 09:33:59 dwdu systemd[1]: Started diaspora* social network (unicorn).
+Jul 07 09:34:00 dwdu bash[101479]: I, [2023-07-07T09:34:00.083554 #101479]  INFO -- : Refreshing Gem list
+Jul 07 09:34:01 dwdu bash[101479]: Top level ::CompositeIO is deprecated, require 'multipart/post' and use `Multipart::Post::CompositeReadIO` instead!
+Jul 07 09:34:01 dwdu bash[101479]: Top level ::Parts is deprecated, require 'multipart/post' and use `Multipart::Post::Parts` instead!
+Jul 07 09:34:03 dwdu bash[101479]: Rack::SSL is enabled
+Jul 07 09:34:05 dwdu bash[101479]: I, [2023-07-07T09:34:05.520983 #101479]  INFO -- : unlinking existing socket=/home/diaspora/diaspora/tmp/diaspora.sock
+Jul 07 09:34:05 dwdu bash[101479]: I, [2023-07-07T09:34:05.521100 #101479]  INFO -- : listening on addr=/home/diaspora/diaspora/tmp/diaspora.sock fd=10
+Jul 07 09:34:05 dwdu bash[101479]: I, [2023-07-07T09:34:05.530642 #101479]  INFO -- : master process ready
+Jul 07 09:34:05 dwdu bash[101820]: I, [2023-07-07T09:34:05.534093 #101820]  INFO -- : worker=0 ready
+Jul 07 09:34:05 dwdu bash[101822]: I, [2023-07-07T09:34:05.536925 #101822]  INFO -- : worker=1 ready
 
 diaspora@computer:/etc/systemd/system$ sudo systemctl status d-side
 🟢 d-side.service - diaspora* social network (sidekiq)
    Loaded: loaded (/etc/systemd/system/d-side.service; enabled; vendor preset: enabled)
-   Active: active (running) since Thu 2021-01-21 11:22:17 CST; 32s ago
- Main PID: 23444 (ruby)
-    Tasks: 12 (limit: 4915)
-   CGroup: /system.slice/d-side.service
-           └─23444 sidekiq 5.2.8 diaspora [0 of 5 busy]
-
-Jan 21 11:22:17 computer systemd[1]: Started diaspora* social network (sidekiq).
-Jan 21 11:22:20 computer bash[23444]: Rack::SSL is enabled
+   Active: active (running) since Fri 2023-07-07 09:33:59 CDT; 7min ago
+   Main PID: 101478 (ruby)
+      Tasks: 12 (limit: 17935)
+     Memory: 310.5M
+     CGroup: /system.slice/d-side.service
+             └─101478 sidekiq 6.5.1 diaspora [2 of 5 busy]
 ```
 19. Navigate to your website, and you shouldn't have a 503 error!
 
